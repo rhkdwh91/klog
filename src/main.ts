@@ -4,10 +4,10 @@ import compression from "compression";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-// 환경변수 설정(dotenv 라이브러리 사용)
-// import env from "./config/env";
 import config from "./server_config.json";
 import { NextServer, RequestHandler } from "next/dist/server/next";
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
 
 class Server {
   public next!: NextServer;
@@ -48,20 +48,22 @@ class Server {
   }
 
   public listen() {
-    this.next.prepare().then(() => {
+    this.next.prepare().then(async () => {
       this.setMiddleware();
       this.setRoute();
       const reversePort: number = 3000;
       this.app.listen(reversePort, () => {
         console.log(`next+expresss running on port ${reversePort}`);
       });
+      const nest = await NestFactory.create(AppModule);
+      await nest.listen(4000);
     });
   }
 }
 
-function init() {
+async function bootstrap() {
   const server = new Server();
   server.listen();
 }
 
-init();
+bootstrap();
