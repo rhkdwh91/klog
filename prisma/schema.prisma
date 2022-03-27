@@ -8,6 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model posts {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  contents String
+  title    String
+}
+
 model users {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String
