@@ -7,40 +7,61 @@ import cors from "cors";
 // 환경변수 설정(dotenv 라이브러리 사용)
 // import env from "./config/env";
 import config from "./server_config.json";
-import { IncomingMessage, ServerResponse } from "http";
+import { NextServer, RequestHandler } from "next/dist/server/next";
 
-//const dev:boolean = process.env.NODE_ENV !== "production";
-let nextApp;
-if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "test") {
-  nextApp = next({ dev: false });
-} else if (process.env.NODE_ENV === "development") {
-  nextApp = next({ dev: true });
+class Server {
+  public next!: NextServer;
+  public app!: express.Application;
+  public handle: RequestHandler;
+
+  constructor() {
+    if (
+      process.env.NODE_ENV === "production" ||
+      process.env.NODE_ENV === "test"
+    ) {
+      this.next = next({ dev: false });
+    } else if (process.env.NODE_ENV === "development") {
+      this.next = next({ dev: true });
+    }
+    this.handle = this.next.getRequestHandler();
+  }
+
+  private setRoute() {
+    this.app.set("trust proxy", true);
+    this.app.all("*", (req: express.Request, res: express.Response) => {
+      return this.handle(req, res);
+    });
+  }
+
+  private setMiddleware() {
+    this.app = express();
+    this.app.use(morgan("dev"));
+    this.app.use(compression());
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cookieParser());
+    this.app.use(
+      cors({
+        exposedHeaders: config.corsHeaders,
+      })
+    );
+  }
+
+  public listen() {
+    this.next.prepare().then(() => {
+      this.setMiddleware();
+      this.setRoute();
+      const reversePort: number = 3000;
+      this.app.listen(reversePort, () => {
+        console.log(`next+expresss running on port ${reversePort}`);
+      });
+    });
+  }
 }
 
-const handle = nextApp.getRequestHandler();
-// Node file system을 사용하여 gql schema 가져옴
+function init() {
+  const server = new Server();
+  server.listen();
+}
 
-nextApp.prepare().then(() => {
-  const app = express();
-  // view engine setup
-  app.use(morgan("dev"));
-  app.use(compression());
-
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(cookieParser());
-  app.use(
-    cors({
-      exposedHeaders: config.corsHeaders,
-    })
-  );
-  app.set("trust proxy", true);
-  app.all("*", (req: IncomingMessage, res: ServerResponse) => {
-    return handle(req, res);
-  });
-
-  const reversePort = 3000;
-  app.listen(reversePort, () => {
-    console.log(`next+expresss running on port ${reversePort}`);
-  });
-});
+init();
