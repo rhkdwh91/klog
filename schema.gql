@@ -2,7 +2,20 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Cat {
+  id: Int!
+  firstName: String
+  lastName: String
+}
+
+type User {
+  id: String!
+  name: String
+  email: String
+}
+
 type Query {
-  hello: String!
+  cats: Cat!
   angry: String!
+  users: [User!]!
 }

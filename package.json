@@ -20,6 +20,7 @@
     "@nestjs/core": "^8.4.3",
     "@nestjs/graphql": "^10.0.8",
     "@nestjs/platform-express": "^8.4.3",
+    "@prisma/client": "^3.11.1",
     "apollo-server-express": "^3.6.6",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
@@ -27,6 +28,7 @@
     "express": "^4.17.3",
     "graphql": "^16.3.0",
     "graphql-tools": "^8.2.3",
+    "mongoose": "^6.2.8",
     "morgan": "^1.10.0",
     "next": "12.1.0",
     "nodemon": "^2.0.15",
@@ -46,7 +48,11 @@
     "cross-env": "^7.0.3",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
+    "prisma": "^3.11.1",
     "ts-node": "^10.7.0",
     "typescript": "4.6.3"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   }
 }
