@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainWrap = styled.main`
+export const Main = styled.main`
   padding: 4rem 0;
   flex: 1;
   display: flex;

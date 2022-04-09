@@ -6,8 +6,6 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import config from "./server_config.json";
 import { NextServer, RequestHandler } from "next/dist/server/next";
-import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./app.module";
 
 class Server {
   public next!: NextServer;
@@ -51,12 +49,9 @@ class Server {
     this.next.prepare().then(async () => {
       this.setMiddleware();
       this.setRoute();
-      const reversePort: number = 3000;
-      this.app.listen(reversePort, () => {
-        console.log(`next+expresss running on port ${reversePort}`);
+      this.app.listen(config.port, () => {
+        console.log(`next+expresss running on port ${config.port}`);
       });
-      const nest = await NestFactory.create(AppModule);
-      await nest.listen(4000);
     });
   }
 }
