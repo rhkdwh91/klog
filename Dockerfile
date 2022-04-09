@@ -3,7 +3,8 @@ FROM node:16
 # 앱 디렉터리 생성
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+#COPY package*.json ./
+ADD . /usr/src/app
 RUN npm install
 
 # pm2 설치
@@ -17,9 +18,9 @@ RUN npm install -g pm2
 COPY ./ ./
 
 # 아래 포트로 매핑
-EXPOSE 3000
+EXPOSE 3001
 
-RUN npm run build:test
+RUN npm run build:prod
 
 # pm2-runtime으로 실행 
-CMD ["pm2-runtime", "start", "ecosystem.config.js", "--env", "test"]
+CMD ["pm2-runtime", "start", "ecosystem.config.js", "--env", "production"]
