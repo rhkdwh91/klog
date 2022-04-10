@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 #ADD . /usr/src/app
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # pm2 설치
 RUN npm install -g pm2 
