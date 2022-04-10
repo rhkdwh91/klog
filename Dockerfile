@@ -39,3 +39,32 @@ CMD ["npm", "run", "start:prod"]
 #docker build -t [tagName] ./ , docker run -dp 3001:3001 [tagName]
 #docker run --rm -it -dp 3001:3001 ubuntu:20.04 /bin/sh
 #docker-compose up --build -d
+#docker-compose up
+#docker-compose up -d : docker run의 -d 옵션과 동일
+#docker-compose up --force-recreat : 컨테이너를 새로 만들기
+#docker-compose up --build : 도커 이미지를 다시 빌드(build로 선언했을 때만)
+
+#멈춘 컨테이너를 재개
+#docker-compose start
+#docker-compose start wordpress : wordpress 컨테이너만 재개
+
+#restart
+#docker-compose restart
+#docker-compose restart klog //klog 컨테이너만 재시작
+
+#stop
+#docker-compose stop
+#docker-compose stop klog //klog 컨테이너만 멈춤
+
+#down
+#docker-compose down 컨테이너를 종료하고 삭제
+
+#logs
+#docker-compose logs
+#docker-compose logs -f: 로그 follow
+
+#build
+#컨테이너 build 부분에 정의된 내용대로 빌드
+#build로 선언된 컨테이너만 빌드됨
+#docker-compose build
+#docker-compose build wordpress : wordpress 컨테이너만 build
