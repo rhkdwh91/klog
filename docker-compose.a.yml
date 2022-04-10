@@ -1,0 +1,6 @@
+version: "1"
+services:
+  klog:
+    build: .
+    ports:
+      - 3001:3001
