@@ -58,6 +58,8 @@ CMD ["npm", "run", "start:prod"]
 
 #down
 #docker-compose down 컨테이너를 종료하고 삭제
+#docker-compose down --rmi all 전체삭제
+#docker-compose rm
 
 #logs
 #docker-compose logs
