@@ -13,6 +13,7 @@ export default function GoogleButton() {
   });
   //로그인 성공시 res처리
   const onLoginSuccess = (res: any) => {
+    console.log(res);
     setUserObj({
       ...userObj,
       email: res.profileObj.email,
@@ -27,6 +28,7 @@ export default function GoogleButton() {
         buttonText="Google"
         onSuccess={(result) => onLoginSuccess(result)}
         onFailure={(result) => console.log(result)}
+        cookiePolicy={"single_host_origin"}
       />
     </div>
   );

@@ -6,7 +6,7 @@ const useUsersQuery = () => {
     ["usersQueryKey"],
     async () =>
       await request(
-        `https://api.josns.pe.kr/graphql`,
+        process.env.NEXT_PUBLIC_API_URL,
         gql`
           query {
             users {
