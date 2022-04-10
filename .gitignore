@@ -38,3 +38,5 @@ yarn-error.log*
 schema.gql
 src/prisma/.env
 .env
+
+.package-lock.json
