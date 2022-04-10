@@ -14,10 +14,12 @@
   },
   "dependencies": {
     "@prisma/client": "^3.11.1",
+    "axios": "^0.26.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "graphql-request": "^4.2.0",
     "mobx": "^6.5.0",
     "mongoose": "^6.2.8",
     "morgan": "^1.10.0",

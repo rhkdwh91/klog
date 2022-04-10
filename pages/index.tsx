@@ -1,9 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import useUsersQuery from "hooks/useUsersQuery";
 import BlogContentCard from "components/ui/organisms/blog-content-card/blog-content-card.client";
 import * as Styled from "components/templates/home/styled";
 
 const Home: NextPage = () => {
+  const usersQuery = useUsersQuery();
+  console.log(usersQuery);
   return (
     <div>
       <Head>

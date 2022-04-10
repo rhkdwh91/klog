@@ -20,6 +20,7 @@ class Server {
       this.next = next({ dev: false });
     } else if (process.env.NODE_ENV === "development") {
       this.next = next({ dev: true });
+      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     }
     this.handle = this.next.getRequestHandler();
   }
