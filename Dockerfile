@@ -3,8 +3,8 @@ FROM node:16
 # 앱 디렉터리 생성
 WORKDIR /usr/src/app
 
-#COPY package*.json ./
-ADD . /usr/src/app
+COPY package*.json ./
+#ADD . /usr/src/app
 RUN npm install
 
 # pm2 설치
