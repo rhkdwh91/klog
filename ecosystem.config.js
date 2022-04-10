@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "blog",
+      name: "klog",
       script: "./node_modules/.bin/ts-node server.ts",
       env: {
         NODE_ENV: "development",
