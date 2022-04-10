@@ -1,11 +1,11 @@
 FROM node:16
 
 #PORT 선정
-ENV PORT 3001
+# ENV PORT 3001
 # TimeZone 설정
-RUN apk --no-cache add tzdata && \
-        cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
-        echo "Asia/Seoul" > /etc/timezone
+#RUN apk --no-cache add tzdata && \
+ #       cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
+  #      echo "Asia/Seoul" > /etc/timezone
 
 # 앱 디렉터리 생성
 WORKDIR /usr/src/app
@@ -37,4 +37,5 @@ CMD ["npm", "run", "start:prod"]
 
 #docker ps -a, docker ps, docker rm [imageId], docker image ls, docker rmi [imageId],
 #docker build -t [tagName] ./ , docker run -dp 3001:3001 [tagName]
+#docker run --rm -it -dp 3001:3001 ubuntu:20.04 /bin/sh
 #docker-compose up --build -d
