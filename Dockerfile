@@ -70,3 +70,6 @@ CMD ["npm", "run", "start:prod"]
 #build로 선언된 컨테이너만 빌드됨
 #docker-compose build
 #docker-compose build wordpress : wordpress 컨테이너만 build
+
+#docker rmi $(docker images -f "dangling=true" -q) : <none> image 삭제
+#docker image prune : <none> image 삭제
